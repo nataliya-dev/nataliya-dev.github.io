@@ -586,19 +586,25 @@ var pJS = function (tag_id, params) {
         p.x = Math.random() * pJS.canvas.w;
       }
 
-      // var elem = document.getElementsByClassName("outer-txt")[0];
-
-      // console.log(elem);
-      // console.log(elem.offsetLeft);
-      // console.log(elem.offsetWidth);
-      // console.log(elem.offsetTop);
-      // console.log(elem.offsetHeight);
-
-
       repulseElems.forEach(function (elem) {
-        if (p.x > elem.offsetLeft - repulsePadding && p.x < elem.offsetLeft + elem.offsetWidth + repulsePadding && p.y > elem.offsetTop - repulsePadding && p.y < elem.offsetTop + elem.offsetHeight + repulsePadding) {
-          p.x = Math.random() * pJS.canvas.w;
-          p.y = Math.random() * pJS.canvas.h;
+        if (p.x > elem.offsetLeft - repulsePadding &&
+          p.x < elem.offsetLeft + elem.offsetWidth + repulsePadding &&
+          p.y > elem.offsetTop - repulsePadding &&
+          p.y < elem.offsetTop + elem.offsetHeight + repulsePadding) {
+
+          var ms = pJS.particles.move.speed / 2;
+          var new_x = p.x - p.vx * ms;
+          var new_y = p.y - p.vy * ms;
+          if (new_x > elem.offsetLeft - repulsePadding &&
+            new_x < elem.offsetLeft + elem.offsetWidth + repulsePadding &&
+            new_y > elem.offsetTop - repulsePadding &&
+            new_y < elem.offsetTop + elem.offsetHeight + repulsePadding) {
+            p.x = Math.random() * pJS.canvas.w;
+            p.y = Math.random() * pJS.canvas.h;
+          } else {
+            p.vx = -p.vx
+            p.vy = -p.vy
+          }
         }
       });
 
