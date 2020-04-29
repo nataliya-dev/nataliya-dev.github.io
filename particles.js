@@ -354,13 +354,12 @@ var pJS = function (tag_id, params) {
         this.vy = this.vy * (Math.random());
       }
     } else {
-      this.vx = velbase.x + Math.random() - 0.5;
-      this.vy = velbase.y + Math.random() - 0.5;
+      // this.vx = velbase.x + Math.random() - 0.5;
+      // this.vy = velbase.y + Math.random() - 0.5;
+      var theta = 2.0 * Math.PI * Math.random();
+      this.vx = Math.cos(theta);
+      this.vy = Math.sin(theta);
     }
-
-    // var theta = 2.0 * Math.PI * Math.random();
-    // this.vx = Math.cos(theta);
-    // this.vy = Math.sin(theta);
 
     this.vx_i = this.vx;
     this.vy_i = this.vy;
@@ -602,8 +601,8 @@ var pJS = function (tag_id, params) {
             p.x = Math.random() * pJS.canvas.w;
             p.y = Math.random() * pJS.canvas.h;
           } else {
-            p.vx = -p.vx
-            p.vy = -p.vy
+            p.vx = -p.vx;
+            p.vy = -p.vy;
           }
         }
       });
@@ -718,7 +717,7 @@ var pJS = function (tag_id, params) {
 
       var x_on_line = [];
       var y_on_line = [];
-      var elems_on_line = 10;
+      var elems_on_line = 8;
       for (var i = 1; i < elems_on_line; i++) {
         var dist_inc = i * dx / elems_on_line;
         x_on_line.push(p1.x + dist_inc);
